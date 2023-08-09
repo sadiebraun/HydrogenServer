@@ -1,3 +1,8 @@
+/**
+ * this represents a simplified i18n system to be replaced (or not i guess)
+ * by whatever system would use
+ */
+
 const translations = {
   en: {
     LOADING_TEXT: "Now loading...",

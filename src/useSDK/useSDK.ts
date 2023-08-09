@@ -1,5 +1,10 @@
 import React, { useMemo } from "react";
 import Translationary from "translationary";
+
+import Loader from "../Loader";
+import RemoteWrapper from "../RemoteWrapper";
+import ErrorBoundary from "../ErrorBoundary";
+
 import translations from "../translations";
 
 import type { SDKObject } from "./useSDK.types";
@@ -10,9 +15,16 @@ const shopifyFetch = (): Promise<boolean> => {
   return Promise.resolve(true);
 };
 
+/**
+ *
+ * @param activePage
+ * @param setCurrentLanguage
+ * @returns
+ */
 const useSDK = (
   activePage: string,
-  setCurrentLanguage: React.Dispatch<React.SetStateAction<string>>
+  setCurrentLanguage: React.Dispatch<React.SetStateAction<string | null>>,
+  setActivePage: React.Dispatch<React.SetStateAction<string>>
 ): SDKObject => {
   /**
    *
@@ -21,9 +33,9 @@ const useSDK = (
     () =>
       new Translationary({
         appName: "sdk",
-        fetchTranslations: ({ lang }) => translations[lang],
+        fetchTranslations: ({ lang }: { lang: string }) => translations[lang as keyof typeof translations],
         lang: "en",
-        onLanguageChange: (lang) => setCurrentLanguage(lang)
+        onLanguageChange: (lang: string) => setCurrentLanguage(lang)
       }),
     []
   );
@@ -31,23 +43,24 @@ const useSDK = (
   /**
    *
    */
-  const scopedT = useMemo(() => {
-    const tt = (key: string) => t(`${activePage}.${key}`);
-
-    Object.keys(t).forEach((prop) => {
-      tt[prop] = t[prop];
-    });
-
-    return tt;
-  }, [activePage, t]);
+  const scopedT = useMemo(() =>
+    Object.assign((key: string) => t(`${activePage}.${key}`), t),
+    [activePage, t]
+  );
 
   /**
    *
    */
   return {
+    components: {
+      ErrorBoundary,
+      Loader,
+      RemoteWrapper
+    },
     scopedT,
-    t,
-    shopifyFetch
+    setActivePage,
+    shopifyFetch,
+    t
   };
 };
 

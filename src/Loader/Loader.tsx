@@ -2,16 +2,16 @@ import React from "react";
 
 import useStyles from "./Loader.styles";
 
-import type { SDKObject } from "../useSDK/useSDK.types";
+import type { ServerComponentProps, SDKObject } from "../useSDK/useSDK.types";
 
 /**
  *
  * @param param0
  * @returns
  */
-const Loader = (props: SDKObject) => {
+const Loader = ({ SDK }: ServerComponentProps) => {
   const classes = useStyles();
-  console.log(props);
+  console.log(SDK);
 
   return (
     <div className={classes.ring}>

@@ -9,11 +9,13 @@ const translations = {
     SET_LANGUAGE: "Toggle Language",
     LANDING_PAGE: {
       HEADER: "Landing Page",
-      INTRO: "Hello fron the Landing Page"
+      INTRO: "Hello fron the Landing Page of {{name}}"
     },
     ORDER_PAGE: {
       HEADER: "Order Page",
-      INTRO: "You can order things on this page maybe"
+      INTRO: "You can order things on this page maybe",
+      MAYBE_FROM_WEEK: "Maybe from {{week}}?",
+      MAYBE_PRODUCT: "Maybe you would like {{product}}?"
     },
     NAV: {
       HEADER: "This navigation can move between projects",
@@ -26,11 +28,13 @@ const translations = {
     SET_LANGUAGE: "トグル言語",
     LANDING_PAGE: {
       HEADER: "ランディングページ",
-      INTRO: "ランディングページからこんにちは"
+      INTRO: "{{name}}のランディングページからこんにちは"
     },
     ORDER_PAGE: {
       HEADER: "注文ページ",
-      INTRO: "このページで注文できる。"
+      INTRO: "このページで注文できる。",
+      MAYBE_FROM_WEEK: "たぶん{{week}}から?",
+      MAYBE_PRODUCT: "{{product}}がお好きなのでは?"
     },
     NAV: {
       HEADER: "このナビゲーションはプロジェクト間を移動できる",

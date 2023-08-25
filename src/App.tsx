@@ -33,8 +33,8 @@ const App = (): React.ReactNode => {
           <TranslationToggle {...SDK} />
         </RemoteWrapper>
         <div>
-          {Object.keys(pages).map((page) => (
-            <NavLink t={t} classes={classes} page={page} activePage={activePage} setActivePage={setActivePage} />
+          {Object.keys(pages).map((page, i) => (
+            <NavLink key={i} t={t} classes={classes} page={page} activePage={activePage} setActivePage={setActivePage} />
           ))}
         </div>
       </div>

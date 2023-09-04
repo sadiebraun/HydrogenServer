@@ -3,9 +3,7 @@ import React, { Suspense } from "react";
 import ErrorBoundary from "../ErrorBoundary";
 import Loader from "../Loader";
 
-import type { ServerComponentProps } from "../useSDK/useSDK.types";
-
-
+import type { SDKObject } from "../useSDK/useSDK.types";
 /**
  *
  * @param param0
@@ -14,9 +12,13 @@ import type { ServerComponentProps } from "../useSDK/useSDK.types";
 const RemoteWrapper = ({
   children,
   SDK
-}: ServerComponentProps): React.ReactNode => (
+}: { children: React.ReactNode, SDK: SDKObject }): React.ReactNode => (
   <Suspense fallback={<Loader SDK={SDK} />}>
-    <ErrorBoundary>{children}</ErrorBoundary>
+    <ErrorBoundary>
+      <div style={{transform: "rotate(0deg)"}}>
+        {children}
+      </div>
+    </ErrorBoundary>
   </Suspense>
 );
 

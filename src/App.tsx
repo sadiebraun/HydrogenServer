@@ -21,21 +21,21 @@ const App = (): React.ReactNode => {
 
   const { t } = SDK;
 
-
   return (
     <div className={classes.wrapper}>
       <div className={classes.nav}>
-        <h1>
-          {t(`${activePage}.HEADER`)}
-          {t("NAV.ACTIVE_LABEL")}
-        </h1>
         <RemoteWrapper SDK={SDK}>
           <TranslationToggle {...SDK} />
         </RemoteWrapper>
         <div>
-          {Object.keys(pages).map((page, i) => (
-            <NavLink key={i} t={t} classes={classes} page={page} activePage={activePage} setActivePage={setActivePage} />
-          ))}
+          <button className={classes.imageButton} onClick={() => setActivePage(defaultPage)}>
+            <img src="https://factor-us-development.myshopify.com/cdn/shop/files/favicon_factor.webp?v=1673837643&width=50" />
+          </button>
+          <div className={classes.navWrapper}>
+            {Object.keys(pages).map((page, i) => (
+              page !== defaultPage && <NavLink key={i} t={t} classes={classes} page={page} activePage={activePage} setActivePage={setActivePage} />
+            ))}
+          </div>
         </div>
       </div>
       <div className={classes.content}>

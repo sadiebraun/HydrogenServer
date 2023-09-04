@@ -44,20 +44,31 @@ const useSDK = (
     [activePage, t]
   );
 
-  /**
-   *
-   */
-  return {
-    components: {
-      ErrorBoundary,
-      Loader,
-      RemoteWrapper
-    },
+  const SDK = {
+    components: {},
     scopedT,
     setActivePage,
     shopifyFetch,
     t
   };
+
+  const WrappedLoader = (): React.ReactNode => (<Loader SDK={SDK} />);
+  const WrappedRemoteWrapper = ({children}: {children: React.ReactNode}): React.ReactNode => (
+    <RemoteWrapper SDK={SDK} >
+      {children}
+    </RemoteWrapper>
+  );
+
+  SDK.components = {
+    ErrorBoundary,
+    Loader: WrappedLoader,
+    RemoteWrapper: WrappedRemoteWrapper
+  };
+
+  /**
+   *
+   */
+  return SDK;
 };
 
 export default useSDK;

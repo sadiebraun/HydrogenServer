@@ -17,13 +17,13 @@ export const LandingPage = React.lazy(() => import("TeamOne/LandingPage"));
 // @ts-ignore
 export const TranslationToggle = React.lazy(() => import("TeamOne/TranslationToggle"));
 // @ts-ignore
-export const OrderPage = React.lazy(() => import("TeamTwo/OrderPage"));
+export const MenuPage = React.lazy(() => import("TeamTwo/MenuPage"));
 
 export const defaultPage = "LANDING_PAGE";
 
 const pages = {
   "LANDING_PAGE": LandingPage,
-  "ORDER_PAGE": OrderPage,
+  "MENU_PAGE": MenuPage,
 };
 
 export default pages;
